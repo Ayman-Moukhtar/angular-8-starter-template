@@ -1,0 +1,15 @@
+<app-blocking-loader *ngIf="isLoading$ | async"></app-blocking-loader>
+<div style="text-align:center; margin: 10px;">
+    <div style="display: flex; flex-direction: column; margin: 50px; align-items: center">
+        <mat-checkbox [checked]="showTitle$ | async" (change)="toggleShowTitle()">Show Title
+        </mat-checkbox>
+        <h1 *ngIf="showTitle$ | async">{{ 'Home Component' | capitalize }}</h1>
+        <button style="width: 230px;" mat-raised-button color="primary" (click)="changeFirstPlaceholder()">Change 1st
+            Placeholder</button>
+    </div>
+    <div class="placeholders-container">
+        <app-json-placeholder-card *ngFor="let placeholder of jsonPlaceholders$ | async; trackBy: getItemId"
+            [placeholder]="placeholder">
+        </app-json-placeholder-card>
+    </div>
+</div>

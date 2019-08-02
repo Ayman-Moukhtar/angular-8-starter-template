@@ -1,0 +1,17 @@
+.spinner {
+  position: fixed;
+  z-index: 9999;
+  left: 46%;
+  top: 30%;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 9999;
+  background-color: grey;
+  opacity: 0.5;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+}

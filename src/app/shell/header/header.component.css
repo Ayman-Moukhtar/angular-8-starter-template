@@ -1,0 +1,14 @@
+a {
+    text-decoration: none;
+    color: white;
+}
+ 
+a:hover, a:active{
+    color: lightgray;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
