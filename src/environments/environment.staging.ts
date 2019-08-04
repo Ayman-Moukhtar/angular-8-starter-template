@@ -5,7 +5,8 @@ import { TEnvironment } from '../app/shared/types/environment';
 // The list of file replacements can be found in `angular.json`.
 export const environment: TEnvironment = {
   name: process.env.environment,
-  production: false
+  production: false,
+  apiBaseUrl: 'https://localhost:44390/api'
 };
 
 /*

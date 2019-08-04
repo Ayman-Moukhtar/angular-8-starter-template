@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import('../about/about.module').then(mod => mod.AboutModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'identity',
+    loadChildren: () => import('../identity/identity.module').then(mod => mod.IdentityModule)
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

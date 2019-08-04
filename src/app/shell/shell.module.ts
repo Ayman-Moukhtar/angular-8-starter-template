@@ -14,12 +14,12 @@ import { appReducer } from '../shared/store/app-reducer';
 
 @NgModule({
   imports: [
+    StoreModule.forRoot(appReducer),
+    StoreRouterConnectingModule.forRoot(),
+    CoreModule,
     SharedModule,
     FormsModule,
     ShellRoutingModule,
-    CoreModule,
-    StoreModule.forRoot(appReducer),
-    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       name: 'App DevTools',
       maxAge: 25,

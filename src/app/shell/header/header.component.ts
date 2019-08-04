@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { CoreSelector } from 'src/app/core/state/core.selector';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -6,4 +8,14 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['header.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent { }
+export class HeaderComponent implements OnInit {
+  isLoggedIn$: Observable<boolean>;
+  
+  constructor(
+    private readonly _coreSelector: CoreSelector
+  ) { }
+
+  ngOnInit() {
+    this.isLoggedIn$ = this._coreSelector.isLoggedIn$;
+  }
+}

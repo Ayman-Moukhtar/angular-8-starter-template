@@ -4,7 +4,8 @@ declare global {
 
 type TEnvironment = {
   name: string,
-  production: boolean
+  production: boolean,
+  apiBaseUrl: string
 };
 
 export { 

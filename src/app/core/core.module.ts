@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER, Optional, SkipSelf } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthService } from './services/auth.service';
@@ -7,22 +7,26 @@ import { SubjectService } from './services/subject.service';
 import { EnsureModuleLoadedOnceGuard } from './guards/import.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-const init = () => () => undefined; // Do any app initialization work;
+import { StoreModule } from '@ngrx/store';
+import coreReducer from './state/core.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CoreEffect } from './state/core.effect';
+import { CoreSelector } from './state/core.selector';
+import { CoreDispatcher } from './state/core.dispatcher';
 
 @NgModule({
+  imports: [
+    StoreModule.forFeature('core', coreReducer),
+    EffectsModule.forFeature([CoreEffect]),
+  ],
   exports: [BrowserAnimationsModule, HttpClientModule],
   providers: [
     AuthGuard,
     AuthService,
     EventBusService,
     SubjectService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: init,
-      deps: [], // Add services needed for the init function.
-      multi: true
-    },
+    CoreSelector,
+    CoreDispatcher,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })
