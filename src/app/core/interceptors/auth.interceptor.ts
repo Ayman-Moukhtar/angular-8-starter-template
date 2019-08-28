@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CoreSelector } from '../state/core.selector';
-import { map, switchMap } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return this._coreSelector.accessToken$.pipe(
       map(token => token ? this.cloneRequest(request, token) : request),
-      switchMap(newRequest => next.handle(newRequest))
+      mergeMap(newRequest => next.handle(newRequest))
     );
   }
 
