@@ -17,7 +17,7 @@ export class CoreEffect {
     map(({ payload }: Action<TCredentials>) => payload),
     switchMap(
       (payload: TCredentials) => this._authService.login(payload).pipe(
-        tap(result => AuthService.setAccessToken(result.accessToken)),
+        tap(result => AuthService.setUserTicket(result.accessToken, result.refreshToken)),
         tap(() => this._router.navigateByUrl('/')),
         map(result => loginAction.done({ result, params: payload })),
         catchError(error => of(loginAction.failed({ error, params: payload })))

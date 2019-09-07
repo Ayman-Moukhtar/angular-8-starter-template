@@ -2,15 +2,15 @@
 <mat-card class="card">
     <mat-card-title>Login</mat-card-title>
     <mat-card-content>
-        <form>
+        <form [formGroup]="form">
             <mat-form-field class="full-width">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Enter your email">
+                <input matInput placeholder="Enter your email" formControlName="email">
             </mat-form-field>
 
             <mat-form-field class="full-width">
                 <mat-label>Password</mat-label>
-                <input type="password" matInput placeholder="Enter your password">
+                <input type="password" name="password" matInput placeholder="Enter your password" formControlName="password">
             </mat-form-field>
         </form>
         <mat-card-footer class="footer">
